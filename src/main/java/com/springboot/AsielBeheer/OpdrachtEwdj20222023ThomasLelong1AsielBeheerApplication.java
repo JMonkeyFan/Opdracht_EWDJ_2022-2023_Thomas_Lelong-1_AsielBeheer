@@ -19,7 +19,7 @@ public class OpdrachtEwdj20222023ThomasLelong1AsielBeheerApplication implements 
 
 	@Override
     public void addViewControllers(ViewControllerRegistry registry) {
-	   registry.addRedirectViewController("/", "/guest");
+	   registry.addRedirectViewController("/", "/dieren");
     }
 
 }
