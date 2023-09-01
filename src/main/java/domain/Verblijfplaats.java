@@ -54,7 +54,7 @@ public class Verblijfplaats implements Serializable{
 		 return dier != null;
 	 }
 
-	 public void reserveer(Dier dier)
+	 public void voegToe(Dier dier)
 	 {
 		 if(!isBezet())
 		 {

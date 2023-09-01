@@ -53,10 +53,7 @@ public class Dier implements Serializable {
 	 @Setter @Getter private boolean kanMetHonden;
 	 @Setter @Getter private boolean geschiktAlsBinnenkat;
 	 @Setter @Getter private boolean reedsGereserveerd;
-	 @OneToMany
-	 @Setter @Getter private  Set<Verblijfplaats> verblijfplaatsen = new HashSet<>(); 
-	 @Autowired @Transient
-	 public VerblijfplaatsRepository verblijfplaatsRepository;
+	 
 	 public Dier(String naam, String ras, String geslacht, LocalDate geboorteDatum, double medischeKosten,
 			boolean kanMetJongeKinderen, boolean kanMetOudereKinderen, boolean kanMetKatten, boolean kanMetHonden, 
 			boolean geschiktAlsBinnenkat, boolean reedsGereserveerd) {  
@@ -73,27 +70,6 @@ public class Dier implements Serializable {
 		this.geschiktAlsBinnenkat = geschiktAlsBinnenkat;
 		this.reedsGereserveerd = reedsGereserveerd;
 	}
-	 public void voegToeAanVerblijfplaats(Verblijfplaats verblijfplaats)
-	 {
-		 if(!verblijfplaatsen.contains(verblijfplaats))
-		 {
-			 verblijfplaatsen.add(verblijfplaats);
-			 verblijfplaatsRepository.save(verblijfplaats);
-		 }
-		 else
-		 {
-			 throw new Error("Dier reeds toegevoegd aan verblijfplaats " + verblijfplaats.getHokNaam());
-		 }
-	 }
-	 public void verwijderVanVerblijfPlaats(Verblijfplaats verblijfplaats)
-	 {
-		 if(verblijfplaatsen.contains(verblijfplaats))
-		 {
-			 verblijfplaatsen.remove(verblijfplaats);
-			 verblijfplaatsRepository.delete(verblijfplaats);
-		 }
-	 }
-
 	public void setNaam(String naam) {
 		this.naam = naam;
 	}
