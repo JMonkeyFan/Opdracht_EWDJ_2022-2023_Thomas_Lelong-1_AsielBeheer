@@ -43,9 +43,9 @@ public class SecurityConfig {
 				.access(new WebExpressionAuthorizationManager("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"))
 				.requestMatchers("/manage/addDier")
 				.access(new WebExpressionAuthorizationManager("hasAnyRole('ROLE_ADMIN')")))
-				.formLogin(form -> form.defaultSuccessUrl("/dieren", true).loginPage("/login")
-						.usernameParameter("username").passwordParameter("password"))
-				.exceptionHandling().accessDeniedPage("/403");
+				.formLogin(form -> form.defaultSuccessUrl("/dieren", true).loginPage("/login").loginPage("/login")
+                     	.usernameParameter("username").passwordParameter("password"))
+            .exceptionHandling().accessDeniedPage("/403");
 
 		return http.build();
 	}

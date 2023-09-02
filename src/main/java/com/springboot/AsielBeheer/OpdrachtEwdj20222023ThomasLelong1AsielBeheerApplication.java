@@ -28,6 +28,7 @@ public class OpdrachtEwdj20222023ThomasLelong1AsielBeheerApplication implements 
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addRedirectViewController("/", "/dieren");
+	    registry.addViewController("/403").setViewName("403");
 	}
 
 	@Bean

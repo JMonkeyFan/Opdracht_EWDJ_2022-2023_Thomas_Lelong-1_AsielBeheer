@@ -34,14 +34,14 @@ class SpringBootSecurity1JdbcApplicationTests {
 	@WithMockUser(username = "user", roles = { "USER" })
 	@Test
 	public void testAccessWithUserRole() throws Exception {
-		mockMvc.perform(get("/welcome")).andExpect(status().isOk()).andExpect(view().name("hello"))
-				.andExpect(model().attributeExists("username")).andExpect(model().attribute("username", "user"));
+		mockMvc.perform(get("/dieren")).andExpect(status().isOk()).andExpect(view().name("dieren"))
+				;
 	}
 
-	@WithMockUser(username = "admin", roles = { "ADMIN", "NOT_USER_NOT_ADMIN" })
+	@WithMockUser(username = "user", roles = { "USER", "NOT_USER_NOT_ADMIN" })
 	@Test
 	public void testNoAccess() throws Exception {
-		mockMvc.perform(get("/welcome")).andExpect(status().isForbidden());
+		mockMvc.perform(get("/manage/addDier")).andExpect(status().isForbidden());
 	}
 
 }
