@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
 </head>
+
 <body>
 
-<h1 th:text="|Succesfully added animal|"></h1>
+	<h1 th:text="|Succesfully added animal|"></h1>
 	<a th:href="|/manage/addDier|" th:text="|Add another|"></a>
 	<a th:href="|/dieren|" th:text="|Home|"></a>
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Logout" />
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+	</form>
 </body>
+
 </html>

@@ -1,23 +1,18 @@
 package com.springboot.AsielBeheer;
 
-import java.time.LocalDate;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-
 
 import domain.Dier;
 import domain.Reservatie;
-import jakarta.validation.Valid;
 import repository.DierRepository;
 import repository.ReservatieRepository;
 import repository.VerblijfplaatsRepository;
@@ -33,11 +28,11 @@ public class DierController {
 	private VerblijfplaatsRepository verblijfplaatsRepository;
 	
 	@GetMapping
-	public String listDieren(Model model) {
+	public String listDieren(Model model, Principal principal) {
 		model.addAttribute("dierList", dierRepository.getAllSorted());
 		List<Dier> sorted =  dierRepository.getAllSorted();
 		List<String> rassen = new ArrayList<>();
-		
+		System.out.println(principal.getName());
 		for(int i = 0; i<sorted.size(); i++)
 				{
 			if(!rassen.contains(sorted.get(i).getRas()))

@@ -1,95 +1,98 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Add an animal</title>
-<link rel="stylesheet" th:href="@{/css/style.css}" />
+	<meta charset="ISO-8859-1">
+	<title>Add an animal</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
+
 <body>
 
 	<h1>Add an animal</h1>
-	<form th:action="@{/manage/addDier}" th:object="${AddAnimal}" th:method="post" ><!--  -->
+	<form th:action="@{/manage/addDier}" th:object="${AddAnimal}" th:method="post">
+		<!--  -->
 		<p>
-			<label>Name:</label> <input type="text" th:field="*{name}"
-				placeholder="name" size="20" />
-			 <span th:if="${#fields.hasErrors('name')}" th:errorclass="error" th:errors="*{name}"></span>
+			<label>Name:</label> <input type="text" th:field="*{name}" placeholder="name" size="20" />
+			<span th:if="${#fields.hasErrors('name')}" th:errorclass="error" th:errors="*{name}"></span>
 		</p>
 		<p>
-			<label>Race:</label> <input type="text" th:field="*{race}"
-				placeholder="race" size="20" />
-			 <span th:if="${#fields.hasErrors('race')}" th:errorclass="error" th:errors="*{race}"></span>
+			<label>Race:</label> <input type="text" th:field="*{race}" placeholder="race" size="20" />
+			<span th:if="${#fields.hasErrors('race')}" th:errorclass="error" th:errors="*{race}"></span>
 		</p>
 		<p>
 			<label>Identification Code:</label> <input type="text" th:field="*{identificationCode}"
 				placeholder="identificationCode" size="20" />
-			 <span th:if="${#fields.hasErrors('identificationCode')}" th:errorclass="error" th:errors="*{identificationCode}"></span>
+			<span th:if="${#fields.hasErrors('identificationCode')}" th:errorclass="error"
+				th:errors="*{identificationCode}"></span>
 		</p>
 		<p>
-			<label>Gender:</label> <input type="text" th:field="*{gender}"
-				placeholder="gender" size="20" />
-			 <span th:if="${#fields.hasErrors('gender')}" th:errorclass="error" th:errors="*{gender}"></span>
+			<label>Gender:</label> <input type="text" th:field="*{gender}" placeholder="gender" size="20" />
+			<span th:if="${#fields.hasErrors('gender')}" th:errorclass="error" th:errors="*{gender}"></span>
 		</p>
 		<p>
-			<label>Birthday:</label> <input type="date" th:field="*{birthday}"
-				placeholder="2023-09-02" size="20" />
-			 <span th:if="${#fields.hasErrors('birthday')}" th:errorclass="error" th:errors="*{birthday}"></span> 
+			<label>Birthday:</label> <input type="date" th:field="*{birthday}" placeholder="2023-09-02" size="20" />
+			<span th:if="${#fields.hasErrors('birthday')}" th:errorclass="error" th:errors="*{birthday}"></span>
 		</p>
 		<p>
-			<label>Medical Costs:</label> <input type="number"
-				th:field="*{medicalCosts}" placeholder="0" size="20" />
+			<label>Medical Costs:</label> <input type="number" th:field="*{medicalCosts}" placeholder="0" size="20" />
 			<span th:if="${#fields.hasErrors('medicalCosts')}" th:errorclass="error" th:errors="*{medicalCosts}"></span>
 		</p>
 		<p>
-			<label>Ok with younger kids:</label> <input type="checkbox"
-				th:field="*{okWithYoungKids}" placeholder="okWithYoungKids"
+			<label>Ok with younger kids:</label> <input type="checkbox" th:field="*{okWithYoungKids}"
+				placeholder="okWithYoungKids" size="20" />
+			<span th:if="${#fields.hasErrors('okWithYoungKids')}" th:errorclass="error"
+				th:errors="*{okWithYoungKids}"></span>
+		</p>
+		<p>
+			<label>Ok with older kids:</label> <input type="checkbox" th:field="*{okWithOlderKids}"
+				placeholder="okWithOlderKids" size="20" />
+			<span th:if="${#fields.hasErrors('okWithOlderKids')}" th:errorclass="error"
+				th:errors="*{okWithOlderKids}"></span>
+		</p>
+		<p>
+			<label>Ok with cats:</label> <input type="checkbox" th:field="*{okWithCats}" placeholder="okWithCats"
 				size="20" />
-			 <span th:if="${#fields.hasErrors('okWithYoungKids')}" th:errorclass="error" th:errors="*{okWithYoungKids}"></span>
+			<span th:if="${#fields.hasErrors('okWithCats')}" th:errorclass="error" th:errors="*{okWithCats}"></span>
 		</p>
 		<p>
-			<label>Ok with older kids:</label> <input type="checkbox"
-				th:field="*{okWithOlderKids}" placeholder="okWithOlderKids"
+			<label>Ok with dogs:</label> <input type="checkbox" th:field="*{okWithDogs}" placeholder="okWithDogs"
 				size="20" />
-			 <span th:if="${#fields.hasErrors('okWithOlderKids')}" th:errorclass="error" th:errors="*{okWithOlderKids}"></span>
+			<span th:if="${#fields.hasErrors('okWithDogs')}" th:errorclass="error" th:errors="*{okWithDogs}"></span>
 		</p>
 		<p>
-			<label>Ok with cats:</label> <input type="checkbox"
-				th:field="*{okWithCats}" placeholder="okWithCats" size="20" />
-			 <span th:if="${#fields.hasErrors('okWithCats')}" th:errorclass="error" th:errors="*{okWithCats}"></span> 
+			<label>Ok as indoor cat:</label> <input type="checkbox" th:field="*{okAsIndoorCat}"
+				placeholder="okAsIndoorCat" size="20" />
+			<span th:if="${#fields.hasErrors('okAsIndoorCat')}" th:errorclass="error"
+				th:errors="*{okAsIndoorCat}"></span>
 		</p>
+
 		<p>
-			<label>Ok with dogs:</label> <input type="checkbox"
-				th:field="*{okWithDogs}" placeholder="okWithDogs" size="20" />
-			<span th:if="${#fields.hasErrors('okWithDogs')}" th:errorclass="error" th:errors="*{okWithDogs}"></span> 
+			<label>Verblijfplaats hokCode1:</label> <input type="number" th:field="*{hokCode1}" placeholder="hokCode1"
+				size="20" />
+			<span th:if="${#fields.hasErrors('hokCode1')}" th:errorclass="error" th:errors="*{hokCode1}"></span>
 		</p>
+
 		<p>
-			<label>Ok as indoor cat:</label> <input type="checkbox"
-				th:field="*{okAsIndoorCat}" placeholder="okAsIndoorCat" size="20" />
-			 <span th:if="${#fields.hasErrors('okAsIndoorCat')}" th:errorclass="error" th:errors="*{okAsIndoorCat}"></span> 
+			<label>Verblijfplaats hokCode2</label> <input type="number" th:field="*{hokCode2}" placeholder="hokCode2"
+				size="20" />
+			<span th:if="${#fields.hasErrors('hokCode2')}" th:errorclass="error" th:errors="*{hokCode2}"></span>
 		</p>
-		
+
 		<p>
-			<label>Verblijfplaats hokCode1:</label> <input type="number"
-				th:field="*{hokCode1}" placeholder="hokCode1" size="20" />
-			 <span th:if="${#fields.hasErrors('hokCode1')}" th:errorclass="error" th:errors="*{hokCode1}"></span> 
+			<label>HokNaam:</label> <input type="text" th:field="*{hokNaam}" placeholder="hokNaam" size="20" />
+			<span th:if="${#fields.hasErrors('hokNaam')}" th:errorclass="error" th:errors="*{hokNaam}"></span>
 		</p>
-		
-		<p>
-			<label>Verblijfplaats hokCode2</label> <input type="number"
-				th:field="*{hokCode2}" placeholder="hokCode2" size="20" />
-			 <span th:if="${#fields.hasErrors('hokCode2')}" th:errorclass="error" th:errors="*{hokCode2}"></span> 
-		</p>
-		
-		<p>
-			<label>HokNaam:</label> <input type="text"
-				th:field="*{hokNaam}" placeholder="hokNaam" size="20" />
-			 <span th:if="${#fields.hasErrors('hokNaam')}" th:errorclass="error" th:errors="*{hokNaam}"></span> 
-		</p>
-		
+
 		<button type="submit">OK</button>
 
 	</form>
 
-
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Logout" />
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+	</form>
 
 </body>
+
 </html>
