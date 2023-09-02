@@ -14,8 +14,10 @@ public interface DierRepository extends CrudRepository<Dier, Long> {
 
 	List<Dier> findByName(String name);
 
-    List<Dier> findByRas(String ras);
-    
+	List<Dier> findByRas(@Param("ras") String ras);
+	List<Dier> getAllSorted();
+	List<Dier> findById(@Param("dierId")int id);
+
    
 /*
  * 

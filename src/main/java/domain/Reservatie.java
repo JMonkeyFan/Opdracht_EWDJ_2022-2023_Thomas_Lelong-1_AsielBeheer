@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import lombok.AccessLevel;
@@ -29,7 +30,7 @@ public class Reservatie implements Serializable{
 	 @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    private Long id;
-	 
+	@ManyToOne
 	@Getter @Setter private Dier dier;
 	@Getter @Setter private LocalDate reservatieDatum;
 	@Getter @Setter private String gereserveerdVoor;
@@ -39,6 +40,7 @@ public class Reservatie implements Serializable{
 		if(!dier.isReedsGereserveerd())
 		{
 			this.gereserveerdVoor = gereserveerdVoor;
+			dier.setReedsGereserveerd(true);
 			reservatieDatum = LocalDate.now();
 		}
 		else

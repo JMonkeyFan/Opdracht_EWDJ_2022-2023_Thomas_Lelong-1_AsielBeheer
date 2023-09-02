@@ -28,7 +28,9 @@ import repository.VerblijfplaatsRepository;
 	@NamedQuery(name="Dier.findByName", 
  	       query = "SELECT d FROM Dier d WHERE d.naam LIKE CONCAT(:diernaam,'%')"),
 	@NamedQuery(name="Dier.findByRas", 
-    query = "SELECT d FROM Dier d WHERE d.ras LIKE CONCAT(:dierras,'%')")
+    query = "SELECT d FROM Dier d WHERE d.ras LIKE CONCAT(:ras,'%')"),
+	@NamedQuery(name="Dier.getAllSorted", 
+    query = "SELECT d FROM Dier d ORDER BY d.ras, d.geboorteDatum")
     	})
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

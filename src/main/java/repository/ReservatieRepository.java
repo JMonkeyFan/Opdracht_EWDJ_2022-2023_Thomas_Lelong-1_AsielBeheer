@@ -9,7 +9,7 @@ import domain.Reservatie;
 
 public interface ReservatieRepository extends CrudRepository<Reservatie, Long> {
 
-	List<Reservatie> findByGereserveerdVoor(String name);
+	List<Reservatie> findByGereserveerdVoor(String gereserveerdVoor);
 	List<Reservatie> findByDier(Dier dier);
 	
 
