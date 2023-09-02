@@ -9,8 +9,8 @@
 
 <body>
 
-	<h2 th:if="${geselecteerdRas}" th:text="|Just our ${geselecteerdRas}s|"></h2>
-	<h2 th:unless="${geselecteerdRas}" th:text="|All our animals:|"></h2>
+	<h2 th:if="${geselecteerdRas}" th:text="|Just our ${geselecteerdRas}s for you ${principal}|" ></h2>
+	<h2 th:unless="${geselecteerdRas}" th:text="|All our animals, just for you ${principal}:|"></h2>
 	<a th:href="|/manage/addDier|" th:text="|Add animal|"></a>
 	<a th:href="|/dieren|" th:unless="${rassen}" )> Terug naar lijst</a>
 

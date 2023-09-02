@@ -30,9 +30,9 @@ public class DierController {
 	@GetMapping
 	public String listDieren(Model model, Principal principal) {
 		model.addAttribute("dierList", dierRepository.getAllSorted());
+		model.addAttribute("principal", principal.getName());
 		List<Dier> sorted =  dierRepository.getAllSorted();
 		List<String> rassen = new ArrayList<>();
-		System.out.println(principal.getName());
 		for(int i = 0; i<sorted.size(); i++)
 				{
 			if(!rassen.contains(sorted.get(i).getRas()))
@@ -44,15 +44,15 @@ public class DierController {
 		return "dieren";
 	}
 	@GetMapping(value = "/rassen/{ras}")
-	public String listDierenFromRas(@PathVariable("ras") String dierras, Model model) {
+	public String listDierenFromRas(@PathVariable("ras") String dierras, Model model, Principal principal) {
 		//model.addAttribute("dierList", dierRepository.getAllSorted());
 		model.addAttribute("dierList", dierRepository.findByRas(dierras));
 		model.addAttribute("geselecteerdRas", dierras);
+		model.addAttribute("principal", principal.getName());
 		return "dieren";
 	}
 	@GetMapping(value = "/reserveer/{id}")
     public String reserveer(@PathVariable("id") Integer dierId, Model model, Principal principal) {
-       System.out.println("Reserveer");
        Dier dier = dierRepository.findById(dierId).get(0);
        if (dier == null) {
 			return "redirect:/dieren";
