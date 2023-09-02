@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="ISO-8859-1">
-	<title>Dier</title>
+<meta charset="ISO-8859-1">
+<title>Dier</title>
 </head>
 
 <body>
@@ -59,8 +59,8 @@
 	</th:block>
 
 	<form th:action="@{/logout}" method="post">
-		<input type="submit" value="Logout" />
-		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		<input type="submit" value="Logout" /> <input type="hidden"
+			th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 	</form>
 </body>
 

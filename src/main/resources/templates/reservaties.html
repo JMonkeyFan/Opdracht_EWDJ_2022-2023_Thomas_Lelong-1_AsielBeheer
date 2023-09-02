@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Reservaties</title>
+	<meta charset="ISO-8859-1">
+	<title>Reservaties</title>
 </head>
+
 <body>
 	<h1>Reservaties</h1>
 
@@ -12,21 +14,24 @@
 			<th>Reservatie Datum</th>
 			<th>Diernaam</th>
 			<th>Gereserveerd voor</th>
+			<th>reserveren/vrijgeven</th>
 		</tr>
 
 		<th:block th:each="reservatie: ${reservaties}">
 			<tr>
-				<td th:text="${reservatie.reservatieDatum}"></td>
-				<td><a th:href="|/dieren/${reservatie.dier.id}|" th:text="${reservatie.dier.naam}"></a></td>
-				<td th:text="${reservatie.gereserveerdVoor}"></td>
+				<td th:text="|${reservatie.reservatieDatum}|"></td>
+				<td><a  th:href="|/dieren/${reservatie.dier.id}|" th:text="|${reservatie.dier.naam}|"></a></td>
+				<td th:text="|${reservatie.gereserveerdVoor}|"></td>
+				<td th:if="${reservatie.gereserveerdVoor}" > <a th:text="|Hef reservatie op|" th:if="${isAdmin}" th:href="|/dieren/geefVrij/${reservatie.dier.id}|"></a></td>
 				<!-- oplossing zonder DateFormatter -->
 				<!-- <td th:with="df=#{date.format.pattern}" th:text="${#temporals.format(contact.birthDate, df)}"></td>  -->
 			</tr>
 		</th:block>
 	</table>
 	<form th:action="@{/logout}" method="post">
-		<input type="submit" value="Logout" /> 
+		<input type="submit" value="Logout" />
 		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 	</form>
 </body>
+
 </html>

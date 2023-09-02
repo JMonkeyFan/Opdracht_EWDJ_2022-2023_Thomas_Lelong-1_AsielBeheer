@@ -26,45 +26,48 @@ public class InitDataConfig implements CommandLineRunner {
 	@Override
 	public void run(String... args) {
 		/*
-		 * String naam, String ras, String geslacht, LocalDate geboorteDatum, double medischeKosten,
-		boolean kanMetJongeKinderen, boolean kanMetOudereKinderen, boolean kanMetKatten, boolean kanMetHonden,
-		boolean geschiktAlsBinnenkat, boolean reedsGereserveerd
-		 */ 
-		Dier Jack = new Dier("Jack", "Border Collie","BLA5000002", "Mannelijk", LocalDate.parse("2018-12-27"), 107.25, false, true, false, true, false, false);
-		Dier Jones = new Dier("Jones", "Collie","BLA5010000", "Mannelijk", LocalDate.parse("2018-12-27"), 251.7, false, false, false, true, false, false);
-		Dier Jill = new Dier("Jill", "Labrador", "BLA5020001","Vrouwelijk", LocalDate.parse("2018-12-27"), 13.833, true, true, true, true, false, false);
-		Dier Rocky = new Dier("Rocky","Boxer","BLA5030002",  "Mannelijk", LocalDate.parse("2018-12-27"), 150.53, false, true, false, false, false, false);
-		Dier SirKittensTheThird = new Dier("Sir Kittens the third","Abbysinian", "BLA5040000", "Vrouwelijk", LocalDate.parse("2018-12-27"), 5000.45, false, true, false, true, true, false);
-		Verblijfplaats Palace = new Verblijfplaats(1,6,"Palace");
-		Verblijfplaats TenWoofingStreet = new Verblijfplaats(2,5,"10 Woofing Street");
-		Verblijfplaats CasaDelBark = new Verblijfplaats(3,4,"Casa del bark");
-		Verblijfplaats BarktonAvenue = new Verblijfplaats(4,3,"Barkton avenue");
-		Verblijfplaats BorkiPark = new Verblijfplaats(5,2,"Borki Park");
-		Verblijfplaats Barkville = new Verblijfplaats(6,1,"Barkville");
-		Barkville.voegToe(Jack); 
-		BorkiPark.voegToe(Jones); 
-		BarktonAvenue.voegToe(Jill); 
-		CasaDelBark.voegToe(Jack); 
-		TenWoofingStreet.voegToe(Rocky); 
-		Palace.voegToe(SirKittensTheThird); 
+		 * String naam, String ras, String geslacht, LocalDate geboorteDatum, double
+		 * medischeKosten, boolean kanMetJongeKinderen, boolean kanMetOudereKinderen,
+		 * boolean kanMetKatten, boolean kanMetHonden, boolean geschiktAlsBinnenkat,
+		 * boolean reedsGereserveerd
+		 */
+		Dier Jack = new Dier("Jack", "Border Collie", "BLA5000002", "Mannelijk", LocalDate.parse("2018-12-27"), 107.25,
+				false, true, false, true, false, false);
+		Dier Jones = new Dier("Jones", "Collie", "BLA5010000", "Mannelijk", LocalDate.parse("2018-12-27"), 251.7, false,
+				false, false, true, false, false);
+		Dier Jill = new Dier("Jill", "Labrador", "BLA5020001", "Vrouwelijk", LocalDate.parse("2018-12-27"), 13.833,
+				true, true, true, true, false, false);
+		Dier Rocky = new Dier("Rocky", "Boxer", "BLA5030002", "Mannelijk", LocalDate.parse("2018-12-27"), 150.53, false,
+				true, false, false, false, false);
+		Dier SirKittensTheThird = new Dier("Sir Kittens the third", "Abbysinian", "BLA5040000", "Vrouwelijk",
+				LocalDate.parse("2018-12-27"), 5000.45, false, true, false, true, true, false);
+		Verblijfplaats Palace = new Verblijfplaats(1, 6, "Palace");
+		Verblijfplaats TenWoofingStreet = new Verblijfplaats(2, 5, "10 Woofing Street");
+		Verblijfplaats CasaDelBark = new Verblijfplaats(3, 4, "Casa del bark");
+		Verblijfplaats BarktonAvenue = new Verblijfplaats(4, 3, "Barkton avenue");
+		Verblijfplaats BorkiPark = new Verblijfplaats(5, 2, "Borki Park");
+		Verblijfplaats Barkville = new Verblijfplaats(6, 1, "Barkville");
+		Barkville.voegToe(Jack);
+		BorkiPark.voegToe(Jones);
+		BarktonAvenue.voegToe(Jill);
+		CasaDelBark.voegToe(Jack);
+		TenWoofingStreet.voegToe(Rocky);
+		Palace.voegToe(SirKittensTheThird);
 		dierRepository.save(Jack);
 		dierRepository.save(Jones);
 		dierRepository.save(Jill);
 		dierRepository.save(Rocky);
 		dierRepository.save(SirKittensTheThird);
-	
+
 		verblijfplaatsRepository.save(Palace);
 		verblijfplaatsRepository.save(TenWoofingStreet);
 		verblijfplaatsRepository.save(CasaDelBark);
 		verblijfplaatsRepository.save(BarktonAvenue);
 		verblijfplaatsRepository.save(BorkiPark);
 		verblijfplaatsRepository.save(Barkville);
-		Reservatie reservatieJack = new Reservatie(Jones, "Jeff");
-		reservatieRepository.save(reservatieJack);
 		dierRepository.save(Jack);
 		System.out.println(dierRepository.getAllSorted());
-		
-		
+
 	}
 
 }

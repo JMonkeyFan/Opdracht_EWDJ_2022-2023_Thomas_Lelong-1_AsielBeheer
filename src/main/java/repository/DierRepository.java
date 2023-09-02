@@ -15,16 +15,18 @@ public interface DierRepository extends CrudRepository<Dier, Long> {
 	List<Dier> findByName(String name);
 
 	List<Dier> findByRas(@Param("ras") String ras);
-	List<Dier> getAllSorted();
-	List<Dier> findById(@Param("dierId")int id);
 
-   
-/*
- * 
- *     @Query("SELECT d FROM Dier d WHERE d.name LIKE CONCAT(:diernaam,'%')")
-    Optional<Guest> findByName(@Param("diernaam") String diernaam);
-    @Query("SELECT d FROM Dier d WHERE d.name LIKE CONCAT(:diernaam,'%')")
-    Optional<Guest> findByRas(@Param("diernaam") String diernaam);
- */
+	List<Dier> getAllSorted();
+
+	List<Dier> findById(@Param("dierId") int id);
+
+	/*
+	 * 
+	 * @Query("SELECT d FROM Dier d WHERE d.name LIKE CONCAT(:diernaam,'%')")
+	 * Optional<Guest> findByName(@Param("diernaam") String diernaam);
+	 * 
+	 * @Query("SELECT d FROM Dier d WHERE d.name LIKE CONCAT(:diernaam,'%')")
+	 * Optional<Guest> findByRas(@Param("diernaam") String diernaam);
+	 */
 
 }

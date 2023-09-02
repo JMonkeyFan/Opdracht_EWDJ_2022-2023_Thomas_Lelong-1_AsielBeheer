@@ -19,16 +19,17 @@ import validator.AddDierValidation;
 @SpringBootApplication
 @EnableJpaRepositories("repository")
 @EntityScan("domain")
-public class OpdrachtEwdj20222023ThomasLelong1AsielBeheerApplication implements WebMvcConfigurer{
+public class OpdrachtEwdj20222023ThomasLelong1AsielBeheerApplication implements WebMvcConfigurer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OpdrachtEwdj20222023ThomasLelong1AsielBeheerApplication.class, args);
 	}
 
 	@Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-	   registry.addRedirectViewController("/", "/dieren");
-    }
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addRedirectViewController("/", "/dieren");
+	}
+
 	@Bean
 	AddDierValidation registrationValidation() {
 		return new AddDierValidation();
@@ -36,8 +37,8 @@ public class OpdrachtEwdj20222023ThomasLelong1AsielBeheerApplication implements 
 
 	@Bean
 	LocaleResolver localeResolver() {
-	    SessionLocaleResolver slr = new SessionLocaleResolver();
-	    slr.setDefaultLocale(Locale.ENGLISH);
-	    return slr;
+		SessionLocaleResolver slr = new SessionLocaleResolver();
+		slr.setDefaultLocale(Locale.ENGLISH);
+		return slr;
 	}
 }

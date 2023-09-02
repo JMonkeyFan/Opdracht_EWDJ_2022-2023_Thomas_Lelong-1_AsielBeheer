@@ -33,7 +33,9 @@ public class Reservatie implements Serializable{
 	@ManyToOne
 	@Getter @Setter private Dier dier;
 	@Getter @Setter private LocalDate reservatieDatum;
-	@Getter @Setter private String gereserveerdVoor;
+	@Getter
+	@Setter
+	private String gereserveerdVoor;
 	public Reservatie(Dier dier, String gereserveerdVoor)
 	{
 		this.dier = dier;

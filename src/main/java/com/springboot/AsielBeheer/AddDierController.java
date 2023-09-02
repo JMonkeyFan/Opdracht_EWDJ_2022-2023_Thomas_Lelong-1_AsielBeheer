@@ -62,7 +62,8 @@ public class AddDierController {
 						addAnimal.isOkAsIndoorCat(), false);
 				dierRepository.save(dier);
 			}
-			Verblijfplaats plaats = new Verblijfplaats(addAnimal.getHokCode1(), addAnimal.getHokCode2(), addAnimal.getHokNaam());
+			Verblijfplaats plaats = new Verblijfplaats(addAnimal.getHokCode1(), addAnimal.getHokCode2(),
+					addAnimal.getHokNaam());
 			verblijfplaatsRepository.save(plaats);
 		}
 		return "registrationSuccess";

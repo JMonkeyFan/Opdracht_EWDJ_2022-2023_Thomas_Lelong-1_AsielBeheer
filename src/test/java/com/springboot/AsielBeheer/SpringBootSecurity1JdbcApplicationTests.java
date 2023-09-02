@@ -17,39 +17,31 @@ import org.springframework.test.web.servlet.MockMvc;
 @SpringBootTest
 @AutoConfigureMockMvc
 class SpringBootSecurity1JdbcApplicationTests {
-	
+
 	@Autowired
 	private MockMvc mockMvc;
-	
+
 	@Test
 	public void loginGet() throws Exception {
-	    	mockMvc.perform(get("/login"))
-	        .andExpect(status().isOk())
-	    	.andExpect(view().name("login"));
+		mockMvc.perform(get("/login")).andExpect(status().isOk()).andExpect(view().name("login"));
 	}
-	 
+
 	@Test
 	public void accessDeniedPageGet() throws Exception {
-	    	mockMvc.perform(get("/403"))
-	        .andExpect(status().isOk())
-	    	.andExpect(view().name("403"));
+		mockMvc.perform(get("/403")).andExpect(status().isOk()).andExpect(view().name("403"));
 	}
-	 
-	@WithMockUser(username = "user", roles = {"USER"})
-    @Test
-    public void testAccessWithUserRole() throws Exception {
-        mockMvc.perform(get("/welcome"))
-        .andExpect(status().isOk())
-		.andExpect(view().name("hello"))
-		.andExpect(model().attributeExists("username"))
-		.andExpect(model().attribute("username", "user"));
-    }
-	
-	@WithMockUser(username = "admin", roles = {"ADMIN", "NOT_USER_NOT_ADMIN"}) 
+
+	@WithMockUser(username = "user", roles = { "USER" })
 	@Test
-    public void testNoAccess() throws Exception {
-        mockMvc.perform(get("/welcome"))
-            .andExpect(status().isForbidden());
+	public void testAccessWithUserRole() throws Exception {
+		mockMvc.perform(get("/welcome")).andExpect(status().isOk()).andExpect(view().name("hello"))
+				.andExpect(model().attributeExists("username")).andExpect(model().attribute("username", "user"));
 	}
-	
+
+	@WithMockUser(username = "admin", roles = { "ADMIN", "NOT_USER_NOT_ADMIN" })
+	@Test
+	public void testNoAccess() throws Exception {
+		mockMvc.perform(get("/welcome")).andExpect(status().isForbidden());
+	}
+
 }

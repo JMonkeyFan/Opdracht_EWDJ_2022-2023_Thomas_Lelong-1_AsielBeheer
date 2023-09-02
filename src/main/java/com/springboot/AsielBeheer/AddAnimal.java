@@ -20,7 +20,8 @@ public class AddAnimal {
 	@Pattern(regexp = "[a-zA-Z ]*", message = "name must be alphanumeric, spaces allowed")
 	private String name;
 	@Pattern(regexp = "[a-zA-Z ]*", message = "name must be alphanumeric, spaces allowed")
-	//@Pattern(regexp = "^$[a-zA-Z ]*", message = "race must be alphanumeric, spaces allowed")
+	// @Pattern(regexp = "^$[a-zA-Z ]*", message = "race must be alphanumeric,
+	// spaces allowed")
 	private String race;
 	@NotBlank
 	@Pattern(regexp = "^[a-zA-Z]+", message = "gender must be alphanumeric with no spaces")
@@ -46,7 +47,7 @@ public class AddAnimal {
 	@Max(value = 300, message = "Must be a number <= 300")
 	private int hokCode2;
 	@NotBlank
-	@Pattern(regexp = "^[a-zA-Z]+", message = "hokNaam must be a-z or A-Z with no spaces") 
+	@Pattern(regexp = "^[a-zA-Z]+", message = "hokNaam must be a-z or A-Z with no spaces")
 	private String hokNaam;
 
 //private ImageIcon foto;

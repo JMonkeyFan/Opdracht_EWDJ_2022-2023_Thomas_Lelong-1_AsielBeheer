@@ -22,9 +22,9 @@ public class GuestController {
 		model.addAttribute("guestName", repository.findByName("Blondeel"));
 		model.addAttribute("guestFirstname", repository.findByFirstname("Sandra"));
 
-        model.addAttribute("guestList2", repository.findByNameStartingWith("blon"));
+		model.addAttribute("guestList2", repository.findByNameStartingWith("blon"));
 		model.addAttribute("guestList3", repository.findByNameStartingWith2("k"));
-		
+
 		return "guest";
 	}
 }

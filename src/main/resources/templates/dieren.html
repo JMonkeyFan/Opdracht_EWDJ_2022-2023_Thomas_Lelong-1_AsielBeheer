@@ -2,16 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="ISO-8859-1">
-	<title>Show Animals</title>
-	<link rel="stylesheet" th:href="@{/css/style.css}" />
+<meta charset="ISO-8859-1">
+<title>Show Animals</title>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 
 <body>
 
-	<h2 th:if="${geselecteerdRas}" th:text="|Just our ${geselecteerdRas}s for you ${principal}|" ></h2>
-	<h2 th:unless="${geselecteerdRas}" th:text="|All our animals, just for you ${principal}:|"></h2>
-	<a th:if="${isAdmin}" th:href="|/manage/addDier|" th:text="|Add animal|"></a>
+	<h2 th:if="${geselecteerdRas}"
+		th:text="|Just our ${geselecteerdRas}s for you ${principal}|"></h2>
+	<h2 th:unless="${geselecteerdRas}"
+		th:text="|All our animals, just for you ${principal}:|"></h2>
+	<a th:if="${isAdmin}" th:href="|/manage/addDier|"
+		th:text="|Add animal|"></a>
 	<a th:href="|/reservaties|" th:text="|Reservaties|"></a>
 	<a th:href="|/dieren|" th:unless="${rassen}" )> Terug naar lijst</a>
 
@@ -34,13 +37,13 @@
 			</tr>
 		</th:block>
 	</table>
-	<p th:if="${rassen}" )> Filter op ras</p>
+	<p th:if="${rassen}" )>Filter op ras</p>
 	<div th:if="${rassen}" ) th:each="ras: ${rassen}">
 		<a th:href="|/dieren/rassen/${ras}|" th:text="${ras}"></a>
 	</div>
 	<form th:action="@{/logout}" method="post">
-		<input type="submit" value="Logout" />
-		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		<input type="submit" value="Logout" /> <input type="hidden"
+			th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 	</form>
 </body>
 

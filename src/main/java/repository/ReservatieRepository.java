@@ -10,17 +10,16 @@ import domain.Reservatie;
 public interface ReservatieRepository extends CrudRepository<Reservatie, Long> {
 
 	List<Reservatie> findByGereserveerdVoor(String gereserveerdVoor);
-	List<Reservatie> findByDier(Dier dier);
-	
 
-    
-   
-/*
- * 
- *     @Query("SELECT d FROM Dier d WHERE d.name LIKE CONCAT(:diernaam,'%')")
-    Optional<Guest> findByName(@Param("diernaam") String diernaam);
-    @Query("SELECT d FROM Dier d WHERE d.name LIKE CONCAT(:diernaam,'%')")
-    Optional<Guest> findByRas(@Param("diernaam") String diernaam);
- */
+	List<Reservatie> findByDier(Dier dier);
+
+	/*
+	 * 
+	 * @Query("SELECT d FROM Dier d WHERE d.name LIKE CONCAT(:diernaam,'%')")
+	 * Optional<Guest> findByName(@Param("diernaam") String diernaam);
+	 * 
+	 * @Query("SELECT d FROM Dier d WHERE d.name LIKE CONCAT(:diernaam,'%')")
+	 * Optional<Guest> findByRas(@Param("diernaam") String diernaam);
+	 */
 
 }

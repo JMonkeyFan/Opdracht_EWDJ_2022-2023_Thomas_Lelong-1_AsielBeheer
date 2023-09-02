@@ -33,7 +33,7 @@ public class Verblijfplaats implements Serializable{
 	 @Getter @Setter private int hokCode1;
 	 @Getter @Setter private int hokCode2;
 	 @Getter @Setter private String hokNaam;
-	 @ManyToOne
+		@ManyToOne
 	 @Getter @Setter private Dier dier;
 	 public Verblijfplaats(int hokCode1, int hokCode2, String hokNaam)
 	 {

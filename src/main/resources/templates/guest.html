@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="ISO-8859-1">
-	<title>Guest</title>
+<meta charset="ISO-8859-1">
+<title>Guest</title>
 </head>
 
 <body>
@@ -11,29 +11,25 @@
 	<h3>GUEST!</h3>
 	FindAll
 	<p th:text="${guestList}"></p>
-	<br>
-	findByName
+	<br> findByName
 	<p th:text="${guestName}"></p>
-	<br>
-	findByFirstname
+	<br> findByFirstname
 	<p th:text="${guestFirstname}"></p>
 
 
-	<br>
-	findByNameStartingWith
+	<br> findByNameStartingWith
 	<p th:text="${guestList2}"></p>
 
-	<br>
-	findByNameStartingWith2 NamedQuery
+	<br> findByNameStartingWith2 NamedQuery
 	<p th:text="${guestList3}"></p>
 
 	<form th:action="@{/logout}" method="post">
-		<input type="submit" value="Logout" />
-		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		<input type="submit" value="Logout" /> <input type="hidden"
+			th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 	</form>
 	<form th:action="@{/logout}" method="post">
-		<input type="submit" value="Logout" />
-		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		<input type="submit" value="Logout" /> <input type="hidden"
+			th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 	</form>
 </body>
 

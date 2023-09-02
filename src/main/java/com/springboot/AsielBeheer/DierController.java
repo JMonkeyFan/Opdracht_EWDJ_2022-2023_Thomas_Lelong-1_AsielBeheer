@@ -36,8 +36,8 @@ public class DierController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
 		boolean hasUserRole = authentication.getAuthorities().stream()
-		          .anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
-		model.addAttribute("isAdmin" ,hasUserRole);
+				.anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
+		model.addAttribute("isAdmin", hasUserRole);
 		List<Dier> sorted =  dierRepository.getAllSorted();
 		List<String> rassen = new ArrayList<>();
 		for(int i = 0; i<sorted.size(); i++)
@@ -70,6 +70,22 @@ public class DierController {
     	   dier.setReedsGereserveerd(true);
            dierRepository.save(dier);
            reservatieRepository.save(reservatie);
+       }
+       model.addAttribute("dier", dier);
+        return "detailDier";
+    }
+	@GetMapping(value = "/geefVrij/{id}")
+    public String geefVrij(@PathVariable("id") Integer dierId, Model model, Principal principal) {
+       Dier dier = dierRepository.findById(dierId).get(0);
+       if (dier == null) {
+			return "redirect:/dieren";
+		}
+       if(dier.isReedsGereserveerd())
+       {
+    	   Reservatie reservatie =  reservatieRepository.findByDier(dier).get(0);
+    	   dier.setReedsGereserveerd(false);
+           dierRepository.save(dier);
+           reservatieRepository.delete(reservatie);
        }
        model.addAttribute("dier", dier);
         return "detailDier";
