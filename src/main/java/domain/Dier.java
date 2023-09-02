@@ -62,6 +62,7 @@ public class Dier implements Serializable {
 			boolean kanMetJongeKinderen, boolean kanMetOudereKinderen, boolean kanMetKatten, boolean kanMetHonden, 
 			boolean geschiktAlsBinnenkat, boolean reedsGereserveerd) {  
 		super(); 
+		this.identificationCode = identificationCode;
 		this.naam = naam;
 		this.ras = ras; 
 		this.geslacht = geslacht; 

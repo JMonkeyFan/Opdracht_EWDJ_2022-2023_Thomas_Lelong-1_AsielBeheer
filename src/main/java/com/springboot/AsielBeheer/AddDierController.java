@@ -40,7 +40,7 @@ public class AddDierController {
 	 public String processRegistration(@ModelAttribute("AddAnimal") @Valid AddAnimal addAnimal, BindingResult result) {
 		addDierValidation.validate(addAnimal, result);
 	        if (result.hasErrors()) {
-		        System.out.println("Error");
+		       // System.out.println("Validation Error");
 	           return "addAnimal";
 	        } 
 			 if(alreadyExists(addAnimal.getName()))
@@ -64,6 +64,7 @@ public class AddDierController {
 	        return "registrationSuccess";
 	    }
 	
+	
 	private boolean alreadyExists(String name)
 	{
 		List<Dier> dieren = dierRepository.getAllSorted();
@@ -77,5 +78,4 @@ public class AddDierController {
 		return false;
 		
 	}
-	
 }

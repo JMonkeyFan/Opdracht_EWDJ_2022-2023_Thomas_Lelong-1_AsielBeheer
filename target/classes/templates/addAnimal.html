@@ -66,6 +66,25 @@
 				th:field="*{okAsIndoorCat}" placeholder="okAsIndoorCat" size="20" />
 			 <span th:if="${#fields.hasErrors('okAsIndoorCat')}" th:errorclass="error" th:errors="*{okAsIndoorCat}"></span> 
 		</p>
+		
+		<p>
+			<label>Verblijfplaats hokCode1:</label> <input type="number"
+				th:field="*{hokCode1}" placeholder="hokCode1" size="20" />
+			 <span th:if="${#fields.hasErrors('hokCode1')}" th:errorclass="error" th:errors="*{hokCode1}"></span> 
+		</p>
+		
+		<p>
+			<label>Verblijfplaats hokCode2</label> <input type="number"
+				th:field="*{hokCode2}" placeholder="hokCode2" size="20" />
+			 <span th:if="${#fields.hasErrors('hokCode2')}" th:errorclass="error" th:errors="*{hokCode2}"></span> 
+		</p>
+		
+		<p>
+			<label>HokNaam:</label> <input type="text"
+				th:field="*{hokNaam}" placeholder="hokNaam" size="20" />
+			 <span th:if="${#fields.hasErrors('hokNaam')}" th:errorclass="error" th:errors="*{hokNaam}"></span> 
+		</p>
+		
 		<button type="submit">OK</button>
 
 	</form>
