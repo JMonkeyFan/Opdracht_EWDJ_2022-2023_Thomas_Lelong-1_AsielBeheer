@@ -98,7 +98,28 @@ public class DierController {
 				.anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
 		boolean hasUserRole = authentication.getAuthorities().stream()
 				.anyMatch(r -> r.getAuthority().equals("ROLE_USER"));
+		/*
+		 * 
+		boolean hasAsielfanRole = authentication.getAuthorities().stream()
+				.anyMatch(r -> r.getAuthority().equals("ROLE_ASIELFAN"));
+		 */
 		model.addAttribute("isAdmin", hasAdminRole);
+		/*
+		 * boolean canHaveMoreReservations = true;
+		if(reservatieRepository.findByGereserveerdVoor(principal.getName()).size() >= 2)
+		{
+			if(!hasAdminRole)
+			canHaveMoreReservations = false;
+		}
+		else if(reservatieRepository.findByGereserveerdVoor(principal.getName()).size() ==1)
+		{
+			if(!hasAsielfanRole && !hasAdminRole)
+			canHaveMoreReservations = false;
+		}
+		
+		model.addAttribute("canHaveMoreReservations", canHaveMoreReservations);
+		 */
+		boolean geefVrijVoorUser = false;
 		boolean isGereserveerdDoorJou = false;
 		if (dierRepository.findById(dierId).get(0) != null) {
 			if (reservatieRepository.findByDier(dierRepository.findById(dierId).get(0)) != null) {
@@ -108,7 +129,7 @@ public class DierController {
 						if (reservatieRepository.findByDier(dierRepository.findById(dierId).get(0)).get(0)
 								.getGereserveerdVoor().equalsIgnoreCase(principal.getName())) {
 							if (!hasAdminRole) {
-								boolean geefVrijVoorUser = true;
+								geefVrijVoorUser = true;
 								model.addAttribute("geefVrijVoorUser", geefVrijVoorUser);
 							}
 						}
@@ -117,12 +138,11 @@ public class DierController {
 
 				}
 			} else {
-				model.addAttribute("isGereserveerdDoorJou", false);
+				model.addAttribute("isGereserveerdDoorJou", geefVrijVoorUser);
 			}
 		} else {
-			model.addAttribute("isGereserveerdDoorJou", false);
+			model.addAttribute("isGereserveerdDoorJou", geefVrijVoorUser);
 		}
-
 		Dier dier = dierRepository.findById(dierId).get(0);
 		if (dier == null) {
 			return "redirect:/dieren";

@@ -54,6 +54,9 @@
 	<th:block th:unless="${isGereserveerdDoorJou}" th:if="${dier.reedsGereserveerd}">
 		<p th:text="#{isReserved}">Is Reserved</p>
 	</th:block>
+	<!--<th:block th:if="${canHaveMoreReservations and dier.reedsGereserveerd}"  th:unless="${isGereserveerdDoorJou}">
+		<p th:text="#{isVolzet}"></p>
+	</th:block> -->
 	<th:block th:unless="${dier.reedsGereserveerd}">
 		<a th:href="|/dieren/reserveer/${dier.id}|" th:text="#{reserve}"></a>
 		<!-- TODO Zorgen dat reserveer enkel getoond wordt als dier nog niet gereserveerd is -->
