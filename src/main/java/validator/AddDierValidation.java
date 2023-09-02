@@ -31,9 +31,9 @@ public class AddDierValidation implements Validator {
 		}
 
 		String gender = addAnimalRegistration.getGender();
-		if (!(gender.equalsIgnoreCase("Mannelijk") || gender.equalsIgnoreCase("Vrouwelijk"))) {
+		if (!(gender.equalsIgnoreCase("Mannetje") || gender.equalsIgnoreCase("Vrouwtje"))) {
 			errors.rejectValue("gender", "inappropriateValue.addAnimalRegistration.gender",
-					"Gender must be \"Mannelijk\" or \"Vrouwelijk\"");
+					"Gender must be \"Mannetje\" or \"Vrouwtje\"");
 		}
 		int hokCode1 = addAnimalRegistration.getHokCode1();
 		int hokCode2 = addAnimalRegistration.getHokCode2();

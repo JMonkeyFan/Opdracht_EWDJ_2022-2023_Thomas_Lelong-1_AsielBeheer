@@ -31,15 +31,15 @@ public class InitDataConfig implements CommandLineRunner {
 		 * boolean kanMetKatten, boolean kanMetHonden, boolean geschiktAlsBinnenkat,
 		 * boolean reedsGereserveerd
 		 */
-		Dier Jack = new Dier("Jack", "Border Collie", "BLA5000002", "Mannelijk", LocalDate.parse("2018-12-27"), 107.25,
+		Dier Jack = new Dier("Jack", "Border Collie", "BLA5000002", "Mannetje", LocalDate.parse("2018-12-27"), 107.25,
 				false, true, false, true, false, false);
-		Dier Jones = new Dier("Jones", "Collie", "BLA5010000", "Mannelijk", LocalDate.parse("2018-12-27"), 251.7, false,
+		Dier Jones = new Dier("Jones", "Collie", "BLA5010000", "Mannetje", LocalDate.parse("2018-12-27"), 251.7, false,
 				false, false, true, false, false);
-		Dier Jill = new Dier("Jill", "Labrador", "BLA5020001", "Vrouwelijk", LocalDate.parse("2018-12-27"), 13.833,
+		Dier Jill = new Dier("Jill", "Labrador", "BLA5020001", "Vrouwtje", LocalDate.parse("2018-12-27"), 13.833,
 				true, true, true, true, false, false);
-		Dier Rocky = new Dier("Rocky", "Boxer", "BLA5030002", "Mannelijk", LocalDate.parse("2018-12-27"), 150.53, false,
+		Dier Rocky = new Dier("Rocky", "Boxer", "BLA5030002", "Mannetje", LocalDate.parse("2018-12-27"), 150.53, false,
 				true, false, false, false, false);
-		Dier SirKittensTheThird = new Dier("Sir Kittens the third", "Abbysinian", "BLA5040000", "Vrouwelijk",
+		Dier SirKittensTheThird = new Dier("Sir Kittens the third", "Abbysinian", "BLA5040000", "Vrouwtje",
 				LocalDate.parse("2018-12-27"), 5000.45, false, true, false, true, true, false);
 		Verblijfplaats Palace = new Verblijfplaats(1, 6, "Palace");
 		Verblijfplaats TenWoofingStreet = new Verblijfplaats(2, 5, "10 Woofing Street");
