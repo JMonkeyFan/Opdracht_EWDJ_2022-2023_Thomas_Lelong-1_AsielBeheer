@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +33,11 @@ public class DierController {
 	public String listDieren(Model model, Principal principal) {
 		model.addAttribute("dierList", dierRepository.getAllSorted());
 		model.addAttribute("principal", principal.getName());
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+		boolean hasUserRole = authentication.getAuthorities().stream()
+		          .anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
+		model.addAttribute("isAdmin" ,hasUserRole);
 		List<Dier> sorted =  dierRepository.getAllSorted();
 		List<String> rassen = new ArrayList<>();
 		for(int i = 0; i<sorted.size(); i++)

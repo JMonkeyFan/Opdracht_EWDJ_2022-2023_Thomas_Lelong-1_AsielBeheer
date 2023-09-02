@@ -28,6 +28,7 @@ public class SecurityConfig {
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf().and().authorizeHttpRequests(requests -> requests.requestMatchers("/login**").permitAll()
 				.requestMatchers("/css/**").permitAll().requestMatchers("/403**").permitAll()
+				.requestMatchers("dieren/reservaties").permitAll()
 				.requestMatchers("/*").access(new WebExpressionAuthorizationManager("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"))
 				.requestMatchers("/dieren")
 				.access(new WebExpressionAuthorizationManager("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"))
