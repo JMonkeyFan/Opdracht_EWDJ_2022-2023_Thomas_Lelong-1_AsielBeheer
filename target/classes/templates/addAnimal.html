@@ -27,7 +27,7 @@
 		</p>
 		<p>
 			<label th:text="#{dierenIdentificatieCode}"></label> <input type="text"
-				th:field="*{identificationCode}" th:placeholder="#{dierenIdentificatieCode}"
+				th:field="*{identificationCode}" th:placeholder="${identificationCode}" 
 				size="20" /> <span
 				th:if="${#fields.hasErrors('identificationCode')}"
 				th:errorclass="error" th:errors="*{identificationCode}"></span>

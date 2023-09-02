@@ -9,12 +9,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import domain.Dier;
 import domain.Reservatie;
+import exception.CustomGenericException;
 import repository.DierRepository;
 import repository.ReservatieRepository;
 import repository.VerblijfplaatsRepository;
@@ -22,6 +25,14 @@ import repository.VerblijfplaatsRepository;
 @Controller
 @RequestMapping("/dieren")
 public class DierController {
+	@ExceptionHandler(CustomGenericException.class)
+	public ModelAndView handleCustomException(CustomGenericException ex)
+	{
+		ModelAndView model = new ModelAndView ("error/generic_error");
+		model.addObject("errCode", ex.getErrCode());
+		model.addObject("errMsg", ex.getErrMsg());
+		return model;
+	}
 	@Autowired
 	private DierRepository dierRepository;
 	@Autowired

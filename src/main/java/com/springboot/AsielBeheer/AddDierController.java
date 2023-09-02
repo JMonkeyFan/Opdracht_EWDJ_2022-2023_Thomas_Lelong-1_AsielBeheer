@@ -6,13 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import domain.Dier;
 import domain.Verblijfplaats;
+import exception.CustomGenericException;
 import jakarta.validation.Valid;
 import repository.DierRepository;
 import repository.ReservatieRepository;
@@ -22,6 +25,14 @@ import validator.AddDierValidation;
 @Controller
 @RequestMapping("/manage/addDier")
 public class AddDierController {
+	@ExceptionHandler(CustomGenericException.class)
+	public ModelAndView handleCustomException(CustomGenericException ex)
+	{
+		ModelAndView model = new ModelAndView ("error/generic_error");
+		model.addObject("errCode", ex.getErrCode());
+		model.addObject("errMsg", ex.getErrMsg());
+		return model;
+	}
 	@Autowired
 	private DierRepository dierRepository;
 	@Autowired
@@ -30,9 +41,9 @@ public class AddDierController {
 	private VerblijfplaatsRepository verblijfplaatsRepository;
 	@Autowired
 	private AddDierValidation addDierValidation;
-
+	
 	@GetMapping
-	public String showHomePage(Model model) {
+	public String showHomePage(Model model)  {
 		model.addAttribute("AddAnimal", new AddAnimal());
 		return "addAnimal";
 	}

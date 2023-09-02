@@ -8,8 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import domain.Dier;
-import domain.Guest;
-
 public interface DierRepository extends CrudRepository<Dier, Long> {
 
 	List<Dier> findByName(String name);

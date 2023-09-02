@@ -43,5 +43,5 @@ class SpringBootSecurity1JdbcApplicationTests {
 	public void testNoAccess() throws Exception {
 		mockMvc.perform(get("/manage/addDier")).andExpect(status().isForbidden());
 	}
-
+	
 }
