@@ -13,6 +13,7 @@ import repository.DierRepository;
 import repository.ReservatieRepository;
 import repository.VerblijfplaatsRepository;
 
+
 @Component
 public class InitDataConfig implements CommandLineRunner {
 
@@ -66,7 +67,6 @@ public class InitDataConfig implements CommandLineRunner {
 		verblijfplaatsRepository.save(BorkiPark);
 		verblijfplaatsRepository.save(Barkville);
 		dierRepository.save(Jack);
-		System.out.println(dierRepository.getAllSorted());
 
 	}
 

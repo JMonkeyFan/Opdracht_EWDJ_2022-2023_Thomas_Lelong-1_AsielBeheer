@@ -42,8 +42,7 @@ public class AddDierController {
 	// result) {
 	public String processRegistration(@ModelAttribute("AddAnimal") @Valid AddAnimal addAnimal, BindingResult result) {
 		addDierValidation.validate(addAnimal, result);
-		if (result.hasErrors()) {
-			// System.out.println("Validation Error");
+		if (result.hasErrors()) {//Todo
 			return "addAnimal";
 		}
 		if (alreadyExists(addAnimal.getName())) {

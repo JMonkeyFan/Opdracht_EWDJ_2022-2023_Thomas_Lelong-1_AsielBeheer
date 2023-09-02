@@ -28,7 +28,6 @@ public class ReservatieController {
 
 	@GetMapping
 	public String showHomePage(Model model, Principal principal) {
-		System.out.println("Reservaties");
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		
 		boolean hasAdminRole = authentication.getAuthorities().stream()
