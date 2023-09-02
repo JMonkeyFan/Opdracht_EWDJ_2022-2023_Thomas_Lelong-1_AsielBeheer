@@ -20,6 +20,11 @@
 			 <span th:if="${#fields.hasErrors('race')}" th:errorclass="error" th:errors="*{race}"></span>
 		</p>
 		<p>
+			<label>Identification Code:</label> <input type="text" th:field="*{identificationCode}"
+				placeholder="identificationCode" size="20" />
+			 <span th:if="${#fields.hasErrors('identificationCode')}" th:errorclass="error" th:errors="*{identificationCode}"></span>
+		</p>
+		<p>
 			<label>Gender:</label> <input type="text" th:field="*{gender}"
 				placeholder="gender" size="20" />
 			 <span th:if="${#fields.hasErrors('gender')}" th:errorclass="error" th:errors="*{gender}"></span>

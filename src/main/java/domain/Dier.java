@@ -50,13 +50,15 @@ public class Dier implements Serializable {
 	 @Setter @Getter  private LocalDate geboorteDatum;
 	 @Setter @Getter private double medischeKosten;
 	 @Setter @Getter private boolean kanMetJongeKinderen; 
+	 @Setter @Getter private String identificationCode; 
+	 
 	 @Setter @Getter private boolean kanMetOudereKinderen;
 	 @Setter @Getter private boolean kanMetKatten;
 	 @Setter @Getter private boolean kanMetHonden;
 	 @Setter @Getter private boolean geschiktAlsBinnenkat;
 	 @Setter @Getter private boolean reedsGereserveerd;
 	 
-	 public Dier(String naam, String ras, String geslacht, LocalDate geboorteDatum, double medischeKosten,
+	 public Dier(String naam, String ras, String identificationCode, String geslacht, LocalDate geboorteDatum, double medischeKosten,
 			boolean kanMetJongeKinderen, boolean kanMetOudereKinderen, boolean kanMetKatten, boolean kanMetHonden, 
 			boolean geschiktAlsBinnenkat, boolean reedsGereserveerd) {  
 		super(); 

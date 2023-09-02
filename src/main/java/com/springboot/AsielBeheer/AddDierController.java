@@ -49,8 +49,17 @@ public class AddDierController {
 			 }
 			 else
 			 { 
-				 Dier dier = new Dier(addAnimal.getName(), addAnimal.getRace(),addAnimal.getGender(), addAnimal.getBirthday(), addAnimal.getMedicalCosts(), addAnimal.isOkWithYoungKids(), addAnimal.isOkWithOlderKids(), addAnimal.isOkWithCats(), addAnimal.isOkWithDogs(), addAnimal.isOkAsIndoorCat(), false);
-				 dierRepository.save(dier);
+				 if(addAnimal.getRace() != null)
+				 {
+					 Dier dier = new Dier(addAnimal.getName(), addAnimal.getRace(), addAnimal.getIdentificationCode(), addAnimal.getGender(), addAnimal.getBirthday(), addAnimal.getMedicalCosts(), addAnimal.isOkWithYoungKids(), addAnimal.isOkWithOlderKids(), addAnimal.isOkWithCats(), addAnimal.isOkWithDogs(), addAnimal.isOkAsIndoorCat(), false);
+					 dierRepository.save(dier);
+					 }
+				 else
+				 {
+					 Dier dier = new Dier(addAnimal.getName(), "", addAnimal.getIdentificationCode(), addAnimal.getGender(), addAnimal.getBirthday(), addAnimal.getMedicalCosts(), addAnimal.isOkWithYoungKids(), addAnimal.isOkWithOlderKids(), addAnimal.isOkWithCats(), addAnimal.isOkWithDogs(), addAnimal.isOkAsIndoorCat(), false);
+					 dierRepository.save(dier);
+					 }
+				 
 			 }
 	        return "registrationSuccess";
 	    }
