@@ -46,7 +46,7 @@ public class AddAnimal {
 	@Max(value = 300, message = "Must be a number <= 300")
 	private int hokCode2;
 	@NotBlank
-	@Pattern(regexp = "^[a-zA-Z]+", message = "hokNaam must be alphanumeric with no spaces") 
+	@Pattern(regexp = "^[a-zA-Z]+", message = "hokNaam must be a-z or A-Z with no spaces") 
 	private String hokNaam;
 
 //private ImageIcon foto;
