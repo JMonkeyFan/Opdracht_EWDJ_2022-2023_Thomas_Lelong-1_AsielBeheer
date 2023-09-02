@@ -2,11 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Access is denied</title>
+<title th:text="#{nietToegestaanTitel}"></title>
 </head>
 <body>
-	<h1>HTTP Status 403 - Access is denied</h1>
-<a th:href="|/dieren|" th:text="|Home|"></a>
+	<h1 th:text="#{nietToegestaanStatus}"></h1>
+<a th:href="|/dieren|" th:text="#{homeKnop}"></a>
 	<form th:action="@{/logout}" method="post">
 		<input type="submit" value="Logout" /> <input type="hidden"
 			th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />

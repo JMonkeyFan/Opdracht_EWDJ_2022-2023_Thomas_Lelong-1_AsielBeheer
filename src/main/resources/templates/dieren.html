@@ -3,29 +3,26 @@
 
 <head>
 <meta charset="ISO-8859-1">
-<title>Show Animals</title>
+<title th:text="#{toonDierenTitel}"></title>
 <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 
 <body>
 
 	
-	<h2 th:if="${geselecteerdRas}"
-		th:text="|Just our ${geselecteerdRas}s for you ${principal}|"></h2>
-	<h2 th:unless="${geselecteerdRas}"
-		th:text="|All our animals, just for you ${principal}:|"></h2>
-		
-	<a th:href="|/dieren|" th:unless="${rassen}" )> Home</a>
+	<h2 th:text="#{onzeDieren}"></h2>
+
+	<a th:href="|/dieren|" th:unless="${rassen}" ) th:text="#{homeKnop}"> </a>
 	<a th:if="${isAdmin}" th:href="|/manage/addDier|"
-		th:text="|Add animal|"></a>
-	<a th:href="|/reservaties|" th:text="|Reservaties|"></a>
+		th:text="#{voegDierToe}"></a>
+	<a th:href="|/reservaties|" th:text="#{reservatiesKnop}"></a>
 
 	<table>
 		<tr>
-			<th>Name</th>
-			<th>Ras</th>
-			<th>Birthday</th>
-			<th>Reserved</th>
+			<th th:text="#{dierenNaam}">Name</th>
+			<th th:text="#{dierenRas}">Ras</th>
+			<th th:text="#{dierenBirthday}">Birthday</th>
+			<th th:text="#{DierenReserved}">Reserved</th>
 		</tr>
 
 		<th:block th:each="dier: ${dierList}">
@@ -39,7 +36,7 @@
 			</tr>
 		</th:block>
 	</table>
-	<p th:if="${rassen}" )>Filter op ras</p>
+	<p th:if="${rassen}" ) th:text="#{filterOnRace}"></p>
 	<div th:if="${rassen}" ) th:each="ras: ${rassen}">
 		<a th:href="|/dieren/rassen/${ras}|" th:text="${ras}"></a>
 	</div>

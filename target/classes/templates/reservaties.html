@@ -7,15 +7,15 @@
 </head>
 
 <body>
-	<h1>Reservaties</h1>
+	<h1 th:text="#{reservatiesTitel}"></h1>
 
-	<a th:href="|/dieren|" th:text="|Home|"></a>
+	<a th:href="|/dieren|" th:text="#{homeKnop}"></a>
 	<table>
 		<tr>
-			<th>Reservatie Datum</th>
-			<th>Diernaam</th>
-			<th>Gereserveerd voor</th>
-			<th>reserveren/vrijgeven</th>
+			<th th:text="#{reservatieDatum}"></th>
+			<th th:text="#{reservatieDierNaam}"></th>
+			<th th:text="#{gereserveerdVoor}"></th>
+			<th th:text="#{reserveerGeefVrij}"></th>
 		</tr>
 
 		<th:block th:each="reservatie: ${reservaties}">
@@ -24,8 +24,6 @@
 				<td><a  th:href="|/dieren/${reservatie.dier.id}|" th:text="|${reservatie.dier.naam}|"></a></td>
 				<td th:text="|${reservatie.gereserveerdVoor}|"></td>
 				<td th:if="${reservatie.gereserveerdVoor}" > <a th:text="|Hef reservatie op|" th:href="|/dieren/geefVrij/${reservatie.dier.id}|"></a></td>
-				<!-- oplossing zonder DateFormatter -->
-				<!-- <td th:with="df=#{date.format.pattern}" th:text="${#temporals.format(contact.birthDate, df)}"></td>  -->
 			</tr>
 		</th:block>
 	</table>
@@ -34,5 +32,8 @@
 		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 	</form>
 </body>
-
+	<!-- oplossing zonder DateFormatter -->
+				<!-- <td th:with="df=#{date.format.pattern}" th:text="${#temporals.format(contact.birthDate, df)}"></td>  -->
 </html>
+
+			
