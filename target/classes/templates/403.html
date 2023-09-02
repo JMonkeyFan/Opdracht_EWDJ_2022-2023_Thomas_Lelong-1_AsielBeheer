@@ -6,7 +6,7 @@
 </head>
 <body>
 	<h1>HTTP Status 403 - Access is denied</h1>
-
+<a th:href="|/dieren|" th:text="|Home|"></a>
 	<form th:action="@{/logout}" method="post">
 		<input type="submit" value="Logout" /> <input type="hidden"
 			th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />

@@ -8,7 +8,7 @@
 </head>
 
 <body>
-
+<a th:href="|/dieren|" th:text="|Home|"></a>
 	<h1>Add an animal</h1>
 	<form th:action="@{/manage/addDier}" th:object="${AddAnimal}"
 		th:method="post">

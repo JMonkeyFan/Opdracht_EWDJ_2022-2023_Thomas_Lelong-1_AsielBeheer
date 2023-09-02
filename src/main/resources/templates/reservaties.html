@@ -9,6 +9,7 @@
 <body>
 	<h1>Reservaties</h1>
 
+	<a th:href="|/dieren|" th:text="|Home|"></a>
 	<table>
 		<tr>
 			<th>Reservatie Datum</th>
@@ -22,7 +23,7 @@
 				<td th:text="|${reservatie.reservatieDatum}|"></td>
 				<td><a  th:href="|/dieren/${reservatie.dier.id}|" th:text="|${reservatie.dier.naam}|"></a></td>
 				<td th:text="|${reservatie.gereserveerdVoor}|"></td>
-				<td th:if="${reservatie.gereserveerdVoor}" > <a th:text="|Hef reservatie op|" th:if="${isAdmin}" th:href="|/dieren/geefVrij/${reservatie.dier.id}|"></a></td>
+				<td th:if="${reservatie.gereserveerdVoor}" > <a th:text="|Hef reservatie op|" th:href="|/dieren/geefVrij/${reservatie.dier.id}|"></a></td>
 				<!-- oplossing zonder DateFormatter -->
 				<!-- <td th:with="df=#{date.format.pattern}" th:text="${#temporals.format(contact.birthDate, df)}"></td>  -->
 			</tr>
