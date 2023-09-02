@@ -35,9 +35,10 @@ public class SecurityConfig {
 				.access(new WebExpressionAuthorizationManager("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"))
 				.requestMatchers("/dieren/rassen/*")
 				.access(new WebExpressionAuthorizationManager("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"))
+				.requestMatchers("dieren/reserveer/*")
+				.access(new WebExpressionAuthorizationManager("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"))
 				.requestMatchers("/manage/addDier")
 				.access(new WebExpressionAuthorizationManager("hasAnyRole('ROLE_ADMIN')")))
-
 				// of .hasRole("USER"))
 				.formLogin(form -> form.defaultSuccessUrl("/dieren", true).loginPage("/login")
 						.usernameParameter("username").passwordParameter("password"))

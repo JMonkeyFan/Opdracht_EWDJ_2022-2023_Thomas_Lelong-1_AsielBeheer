@@ -50,7 +50,23 @@ public class DierController {
 		model.addAttribute("geselecteerdRas", dierras);
 		return "dieren";
 	}
-	
+	@GetMapping(value = "/reserveer/{id}")
+    public String reserveer(@PathVariable("id") Integer dierId, Model model, Principal principal) {
+       System.out.println("Reserveer");
+       Dier dier = dierRepository.findById(dierId).get(0);
+       if (dier == null) {
+			return "redirect:/dieren";
+		}
+       if(!dier.isReedsGereserveerd())
+       {
+    	   Reservatie reservatie = new Reservatie(dier, principal.getName());
+    	   dier.setReedsGereserveerd(true);
+           dierRepository.save(dier);
+           reservatieRepository.save(reservatie);
+       }
+       model.addAttribute("dier", dier);
+        return "detailDier";
+    }
 	
 	
 	@GetMapping(value = "/{id}")
@@ -63,19 +79,24 @@ public class DierController {
         model.addAttribute("dier", dier);
         return "detailDier";
     }
-	@GetMapping(value = "/reserveer/{id}")
+	/*
+	 * @GetMapping(value = "/reserveer/{id}")
     public String reserveer(@PathVariable("id") Integer dierId, Model model) {
-       
+       System.out.println("Reserveer");
        Dier dier = dierRepository.findById(dierId).get(0);
-       Reservatie reservatie = new Reservatie(dier, "Jeff");
-       dier.setReedsGereserveerd(true);
-       dierRepository.save(dier);
-       reservatieRepository.save(reservatie);
-       
-        if (dier == null) {
+       if (dier == null) {
 			return "redirect:/dieren";
 		}
-        model.addAttribute("dier", dier);
+       if(!dier.isReedsGereserveerd())
+       {
+    	   Reservatie reservatie = new Reservatie(dier, "bla");
+    	   dier.setReedsGereserveerd(true);
+           dierRepository.save(dier);
+           reservatieRepository.save(reservatie);
+       }
+       model.addAttribute("dier", dier);
         return "detailDier";
     }
+	 */
+	
 }
