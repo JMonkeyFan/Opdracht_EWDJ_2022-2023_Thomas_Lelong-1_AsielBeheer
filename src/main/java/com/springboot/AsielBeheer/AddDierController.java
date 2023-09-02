@@ -38,23 +38,17 @@ public class AddDierController {
 	@PostMapping
 	 //public String processRegistration(@Valid AddAnimal addAnimal, BindingResult result) {
 	 public String processRegistration(@ModelAttribute("AddAnimal") @Valid AddAnimal addAnimal, BindingResult result) {
-		
 		addDierValidation.validate(addAnimal, result);
 	        if (result.hasErrors()) {
 		        System.out.println("Error");
 	           return "addAnimal";
 	        } 
-	        System.out.println("Got here");
-	        
-			 
-			
 			 if(alreadyExists(addAnimal.getName()))
 			 {
 				  throw new Error("Animal with name " + addAnimal.getName() + " already exists");
 			 }
 			 else
 			 { 
-				 System.out.println("Got here #2");
 				 Dier dier = new Dier(addAnimal.getName(), addAnimal.getRace(),addAnimal.getGender(), addAnimal.getBirthday(), addAnimal.getMedicalCosts(), addAnimal.isOkWithYoungKids(), addAnimal.isOkWithOlderKids(), addAnimal.isOkWithCats(), addAnimal.isOkWithDogs(), addAnimal.isOkAsIndoorCat(), false);
 				 dierRepository.save(dier);
 			 }
