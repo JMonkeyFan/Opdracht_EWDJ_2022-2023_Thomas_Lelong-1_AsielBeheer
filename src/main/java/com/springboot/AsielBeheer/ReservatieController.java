@@ -21,8 +21,8 @@ import repository.VerblijfplaatsRepository;
 import validator.AddDierValidation;
 
 @Controller
-@RequestMapping("/dieren/reservaties")
-public class ReserveerController {
+@RequestMapping("/reservaties")
+public class ReservatieController {
 	@Autowired
 	private DierRepository dierRepository;
 	@Autowired
@@ -34,6 +34,7 @@ public class ReserveerController {
 
 	@GetMapping
 	public String showHomePage(Model model) {
+		System.out.println("Reservaties");
 		List<Reservatie> reservaties = (List<Reservatie>) reservatieRepository.findAll();
 		model.addAttribute("reservaties", reservaties);
 		return "reservaties";

@@ -87,6 +87,14 @@ public class DierController {
         return "detailDier";
     }
 	/*
+	 * @GetMapping("/reservaties")
+	public String showHomePage(Model model) {
+		List<Reservatie> reservaties = (List<Reservatie>) reservatieRepository.findAll();
+		model.addAttribute("reservaties", reservaties);
+		return "reservaties";
+	}
+	 */
+	/*
 	 * @GetMapping(value = "/reserveer/{id}")
     public String reserveer(@PathVariable("id") Integer dierId, Model model) {
        System.out.println("Reserveer");

@@ -2,11 +2,28 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Access is denied</title>
+<title>Reservaties</title>
 </head>
 <body>
-	<h1>HTTP Status 403 - Access is denied</h1>
+	<h1>Reservaties</h1>
 
+	<table>
+		<tr>
+			<th>Reservatie Datum</th>
+			<th>Diernaam</th>
+			<th>Gereserveerd voor</th>
+		</tr>
+
+		<th:block th:each="reservatie: ${reservaties}">
+			<tr>
+				<td th:text="${reservatie.reservatieDatum}"></td>
+				<td><a th:href="|/dieren/${reservatie.dier.id}|" th:text="${reservatie.dier.naam}"></a></td>
+				<td th:text="${reservatie.gereserveerdVoor}"></td>
+				<!-- oplossing zonder DateFormatter -->
+				<!-- <td th:with="df=#{date.format.pattern}" th:text="${#temporals.format(contact.birthDate, df)}"></td>  -->
+			</tr>
+		</th:block>
+	</table>
 	<form th:action="@{/logout}" method="post">
 		<input type="submit" value="Logout" /> 
 		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
