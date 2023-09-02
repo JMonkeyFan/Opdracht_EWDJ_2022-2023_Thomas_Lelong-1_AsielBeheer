@@ -28,7 +28,7 @@ public class DierController {
 	private ReservatieRepository reservatieRepository;
 	@Autowired
 	private VerblijfplaatsRepository verblijfplaatsRepository;
-	
+
 	@GetMapping
 	public String listDieren(Model model, Principal principal) {
 		model.addAttribute("dierList", dierRepository.getAllSorted());
@@ -38,96 +38,98 @@ public class DierController {
 		boolean hasUserRole = authentication.getAuthorities().stream()
 				.anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
 		model.addAttribute("isAdmin", hasUserRole);
-		List<Dier> sorted =  dierRepository.getAllSorted();
+		List<Dier> sorted = dierRepository.getAllSorted();
 		List<String> rassen = new ArrayList<>();
-		for(int i = 0; i<sorted.size(); i++)
-				{
-			if(!rassen.contains(sorted.get(i).getRas()))
-			{
+		for (int i = 0; i < sorted.size(); i++) {
+			if (!rassen.contains(sorted.get(i).getRas())) {
 				rassen.add(sorted.get(i).getRas());
 			}
-				}
+		}
 		model.addAttribute("rassen", rassen);
 		return "dieren";
 	}
+
 	@GetMapping(value = "/rassen/{ras}")
 	public String listDierenFromRas(@PathVariable("ras") String dierras, Model model, Principal principal) {
-		//model.addAttribute("dierList", dierRepository.getAllSorted());
+		// model.addAttribute("dierList", dierRepository.getAllSorted());
 		model.addAttribute("dierList", dierRepository.findByRas(dierras));
 		model.addAttribute("geselecteerdRas", dierras);
 		model.addAttribute("principal", principal.getName());
 		return "dieren";
 	}
+
 	@GetMapping(value = "/reserveer/{id}")
-    public String reserveer(@PathVariable("id") Integer dierId, Model model, Principal principal) {
-       Dier dier = dierRepository.findById(dierId).get(0);
-       if (dier == null) {
+	public String reserveer(@PathVariable("id") Integer dierId, Model model, Principal principal) {
+		Dier dier = dierRepository.findById(dierId).get(0);
+		if (dier == null) {
 			return "redirect:/dieren";
 		}
-       if(!dier.isReedsGereserveerd())
-       {
-    	   Reservatie reservatie = new Reservatie(dier, principal.getName());
-    	   dier.setReedsGereserveerd(true);
-           dierRepository.save(dier);
-           reservatieRepository.save(reservatie);
-       }
-       model.addAttribute("dier", dier);
-        return "detailDier";
-    }
-	@GetMapping(value = "/geefVrij/{id}")
-    public String geefVrij(@PathVariable("id") Integer dierId, Model model, Principal principal) {
-       Dier dier = dierRepository.findById(dierId).get(0);
-       if (dier == null) {
-			return "redirect:/dieren";
+		if (!dier.isReedsGereserveerd()) {
+			Reservatie reservatie = new Reservatie(dier, principal.getName());
+			dier.setReedsGereserveerd(true);
+			dierRepository.save(dier);
+			reservatieRepository.save(reservatie);
 		}
-       if(dier.isReedsGereserveerd())
-       {
-    	   Reservatie reservatie =  reservatieRepository.findByDier(dier).get(0);
-    	   dier.setReedsGereserveerd(false);
-           dierRepository.save(dier);
-           reservatieRepository.delete(reservatie);
-       }
-       model.addAttribute("dier", dier);
-        return "detailDier";
-    }
-	
-	
-	@GetMapping(value = "/{id}")
-    public String show(@PathVariable("id") Integer dierId, Model model) {
-       
-       Dier dier = dierRepository.findById(dierId).get(0);
-        if (dier == null) {
-			return "redirect:/dieren";
-		}
-        model.addAttribute("dier", dier);
-        return "detailDier";
-    }
-	/*
-	 * @GetMapping("/reservaties")
-	public String showHomePage(Model model) {
-		List<Reservatie> reservaties = (List<Reservatie>) reservatieRepository.findAll();
-		model.addAttribute("reservaties", reservaties);
-		return "reservaties";
+		model.addAttribute("dier", dier);
+		return "redirect:/dieren/" + dierId;
 	}
-	 */
-	/*
-	 * @GetMapping(value = "/reserveer/{id}")
-    public String reserveer(@PathVariable("id") Integer dierId, Model model) {
-       System.out.println("Reserveer");
-       Dier dier = dierRepository.findById(dierId).get(0);
-       if (dier == null) {
+
+	@GetMapping(value = "/geefVrij/{id}")
+	public String geefVrij(@PathVariable("id") Integer dierId, Model model, Principal principal) {
+		Dier dier = dierRepository.findById(dierId).get(0);
+		if (dier == null) {
 			return "redirect:/dieren";
 		}
-       if(!dier.isReedsGereserveerd())
-       {
-    	   Reservatie reservatie = new Reservatie(dier, "bla");
-    	   dier.setReedsGereserveerd(true);
-           dierRepository.save(dier);
-           reservatieRepository.save(reservatie);
-       }
-       model.addAttribute("dier", dier);
-        return "detailDier";
-    }
-	 */
+		if (dier.isReedsGereserveerd()) {
+			Reservatie reservatie = reservatieRepository.findByDier(dier).get(0);
+			dier.setReedsGereserveerd(false);
+			dierRepository.save(dier);
+			reservatieRepository.delete(reservatie);
+		}
+		model.addAttribute("dier", dier);
+		return "redirect:/dieren/" + dierId;
+	}
+
+	@GetMapping(value = "/{id}")
+	public String show(@PathVariable("id") Integer dierId, Model model, Principal principal) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+		boolean hasAdminRole = authentication.getAuthorities().stream()
+				.anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
+		boolean hasUserRole = authentication.getAuthorities().stream()
+				.anyMatch(r -> r.getAuthority().equals("ROLE_USER"));
+		model.addAttribute("isAdmin", hasAdminRole);
+		boolean isGereserveerdDoorJou = false;
+		if (dierRepository.findById(dierId).get(0) != null) {
+			if (reservatieRepository.findByDier(dierRepository.findById(dierId).get(0)) != null) {
+				try {
+					if (reservatieRepository.findByDier(dierRepository.findById(dierId).get(0)).get(0) != null) {
+
+						if (reservatieRepository.findByDier(dierRepository.findById(dierId).get(0)).get(0)
+								.getGereserveerdVoor().equalsIgnoreCase(principal.getName())) {
+							if (!hasAdminRole) {
+								boolean geefVrijVoorUser = true;
+								model.addAttribute("geefVrijVoorUser", geefVrijVoorUser);
+							}
+						}
+					}
+				} catch (Exception e) {
+
+				}
+			} else {
+				model.addAttribute("isGereserveerdDoorJou", false);
+			}
+		} else {
+			model.addAttribute("isGereserveerdDoorJou", false);
+		}
+
+		Dier dier = dierRepository.findById(dierId).get(0);
+		if (dier == null) {
+			return "redirect:/dieren";
+		}
+		model.addAttribute("dier", dier);
+		return "detailDier";
+	}
 	
+
 }
